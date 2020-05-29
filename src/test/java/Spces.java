@@ -1,27 +1,24 @@
 
-import com.BaseSetup;
+import com.Utils;
 import com.pageModules.iPageRepository.IpageLocatores;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.Iterator;
 import java.util.Set;
 
-public class Spces extends BaseSetup implements IpageLocatores {
+public class Spces extends Utils implements IpageLocatores {
     WebDriver driver;
     SoftAssert softAssert=new SoftAssert();
 
-    @BeforeTest
-    public WebDriver launchBrowsers(){
+    @BeforeMethod
+    public void launchBrowsers(){
         driver=launchBrowser();
-        return null;
     }
     @AfterMethod
     public void closeBrowsers(){
@@ -59,13 +56,9 @@ public class Spces extends BaseSetup implements IpageLocatores {
         safeClick(next);
         waitForInvissibleElement(loader);
         safeClick(next);
-        waitForInvissibleElement(loader);
         safeClick(By.cssSelector(".solo-ep"));
         safeClick(next);
         waitForInvissibleElement(loader);
-        if(isDisplay(By.cssSelector(".icon-close"))){
-            safeClick(By.cssSelector(".icon-close"));
-        }
         safeClick(By.cssSelector("[class=\"view-tab calendar\"]"));
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(By.cssSelector(".icon-angle-down"))).perform();
